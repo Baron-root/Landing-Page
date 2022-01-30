@@ -21,10 +21,22 @@
  if (!location.href.includes('operabrowserjs=no')) {
      (function(document) {
          const { href, pathname, hostname } = location;
-         /* 
-           we make references to the following functions to not get version that
+ 
+         /*
+           We make references to the following functions to not get version that
            users
            have overwritten.
          */
          const setTimeout = window.setTimeout;
+         const call = Function.prototype.call;
+         const copyMethod = (method, ...defaultArgs) => {
+             method.call = call;
+             return (...args) => {
+                 if (defaultArgs.length) {
+                     args = defaultArgs.concat(args);
+                 }
+                 return method.call(...args);
+             };
+         };
+         const addEvetListener = copyMethod(Window.prototype.addEvetListener);
          
