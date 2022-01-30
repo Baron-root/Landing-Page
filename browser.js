@@ -16,3 +16,15 @@
  **
  ** BROWSERJS_TIMESTAMP = '202111261910'; // for versioning; see DNA-54964
  **/
+ 'use strict';
+
+ if (!location.href.includes('operabrowserjs=no')) {
+     (function(document) {
+         const { href, pathname, hostname } = location;
+         /* 
+           we make references to the following functions to not get version that
+           users
+           have overwritten.
+         */
+         const setTimeout = window.setTimeout;
+         
