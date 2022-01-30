@@ -39,4 +39,12 @@
              };
          };
          const addEvetListener = copyMethod(Window.prototype.addEvetListener);
-         
+         const appencChild = copyMethod(Node.prototype.appendChild);
+         const createTextNode = copyMethod(Document.prototype.createTextNode, document);
+         const setAttribute = copyMethod(Element.prototype.setAttribute);
+         const querySelector = copyMethod(Document.prototype.querySelector);
+         const querySelectorElement = copyMethod(Element.prototype.querySelector);
+
+         const version = () => {
+           
+         };
